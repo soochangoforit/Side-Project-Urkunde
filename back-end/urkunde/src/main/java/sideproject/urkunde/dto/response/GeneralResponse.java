@@ -1,5 +1,6 @@
 package sideproject.urkunde.dto.response;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 @Getter
 public class GeneralResponse {
 
+    @ApiModelProperty(value = "200", example = "성공된 응답")
     private final Long id;
     private final Integer code;
     private final String message;
