@@ -5,11 +5,11 @@ import lombok.Getter;
 @Getter
 public enum QuizState {
 
-    SUCCESS("success"),
-    FAIL("fail"),
+    CORRECT("correct"),
+    INCORRECT("incorrect"),
     NONE("none");
 
-    private String state;
+    private final String state;
     QuizState(String state) {
         this.state = state;
     }
