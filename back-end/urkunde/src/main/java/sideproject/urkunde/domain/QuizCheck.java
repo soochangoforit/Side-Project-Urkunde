@@ -41,4 +41,8 @@ public class QuizCheck {
         this.quizState = quizState;
     }
 
+    public void setQuizState(QuizState quizState) {
+        this.quizState = quizState;
+    }
+
 }

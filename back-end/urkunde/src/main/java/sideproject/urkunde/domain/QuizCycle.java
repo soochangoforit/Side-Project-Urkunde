@@ -21,13 +21,17 @@ public class QuizCycle {
 
     private LocalDateTime endTime;
 
-    @OneToMany(mappedBy = "quizCycle", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "quizCycle", fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     private List<QuizCheck> quizCheckList = new ArrayList<>();
 
     @Builder
     public QuizCycle(LocalDateTime startTime, LocalDateTime endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public void setEndTime() {
+        this.endTime = LocalDateTime.now();
     }
 
 }
