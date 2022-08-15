@@ -65,7 +65,7 @@ public class QuizCalendarCheckServiceImpl implements QuizCalendarCheckService {
             // 해당 요일의 모든 사이클을 통해서 check된 모든 quiz check를 가져온다.
             List<QuizCheck> quizIdsForSuccess = quizCheckRepository.findByQuizCycleIdIn(quizCycleIds); // todo : quizCheck와 quiz Join을 통해서 가져오는데 인자로은 cycle id를 가져오도록 하자.
 
-            int quizIdsForSuccessCount = (int) quizIdsForSuccess.stream().map(QuizCheck::getQuiz).map(Quiz::getId).count();
+            int quizIdsForSuccessCount = quizIdsForSuccess.stream().map(QuizCheck::getQuiz).map(Quiz::getId).collect(Collectors.toSet()).size();
 
             // 그날에 만들었던 모든 문제 아이디 개수를 가져온다.
             int idsMadeOfDay = quizRepository.findByCreatedDateBetween(startTime, endTime).size();

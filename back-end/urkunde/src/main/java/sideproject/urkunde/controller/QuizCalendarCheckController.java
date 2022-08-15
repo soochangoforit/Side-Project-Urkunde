@@ -29,7 +29,7 @@ public class QuizCalendarCheckController {
             " none : 퀴즈 자체를 풀지 않는 경우")
     @ApiResponse(code = 200, message = "퀴즈 주간 확인 성공" ,
             examples = @Example(value = @ExampleProperty(mediaType = APPLICATION_JSON_VALUE,
-                    value = "{'2022-08-14' : 'ture' , '2022-08-15' : 'false' , '2022-08-16' : 'none'}")))
+                    value = "{'sunday' : 'ture' , 'monday' : 'false' , 'tuesday' : 'none'}")))
     public ResponseEntity<WeekCheckResponse> checkWeek(@RequestBody @Valid QuizCalendarCheck quizCalendarCheck) {
 
         WeekCheckResponse weekChecks = quizCalendarCheckService.findCycleIdBetweenDates(quizCalendarCheck);

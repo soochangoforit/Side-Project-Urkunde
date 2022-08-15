@@ -23,4 +23,7 @@ public interface QuizService {
      List<QuizResponseDto> retrieveAllQuizs();
 
     int updateCreateDateFromNow(LocalDateTime now);
+
+     void deleteAll();
+
 }
