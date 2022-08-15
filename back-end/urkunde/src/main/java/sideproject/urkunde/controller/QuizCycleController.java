@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import sideproject.urkunde.dto.request.QuizCycleEndRequest;
 import sideproject.urkunde.dto.response.QuizCycleResultResponse;
 import sideproject.urkunde.dto.response.QuizCycleStartResponse;
+import sideproject.urkunde.repository.QuizRepository;
 import sideproject.urkunde.service.QuizCycleService;
+import sideproject.urkunde.service.QuizService;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,9 +27,15 @@ public class QuizCycleController {
 
     private final QuizCycleService  quizCycleService;
 
+    private final QuizService quizService;
+
     @GetMapping(value="/quiz/cycle/start" , produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value="퀴즈 사이클의 시작" , notes = "해당 api로 요청시 퀴즈 사이클을 시작한다.")
     public ResponseEntity<QuizCycleStartResponse> startQuizCycle() {
+
+        LocalDateTime now = LocalDateTime.now();
+        // update createdDate for bulk insert
+        quizService.updateCreateDateFromNow(now);
 
         // 퀴즈 사이클 시작
         QuizCycleStartResponse quizCycleStartResponse = quizCycleService.startQuizCycle();

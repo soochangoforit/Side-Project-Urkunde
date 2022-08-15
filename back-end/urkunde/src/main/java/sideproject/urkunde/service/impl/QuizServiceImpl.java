@@ -9,6 +9,7 @@ import sideproject.urkunde.dto.response.QuizResponseDto;
 import sideproject.urkunde.repository.QuizRepository;
 import sideproject.urkunde.service.QuizService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -105,5 +106,12 @@ public class QuizServiceImpl implements QuizService {
 
         return collect;
 
+    }
+
+    @Override
+    @Transactional
+    public int updateCreateDateFromNow(LocalDateTime now) {
+
+        return quizRepository.bulkCreateDatePlus(now);
     }
 }

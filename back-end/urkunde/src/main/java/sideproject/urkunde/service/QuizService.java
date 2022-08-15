@@ -4,6 +4,7 @@ import sideproject.urkunde.domain.Quiz;
 import sideproject.urkunde.dto.request.QuizRequestDto;
 import sideproject.urkunde.dto.response.QuizResponseDto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface QuizService {
@@ -20,4 +21,6 @@ public interface QuizService {
      void deleteById(Long id);
 
      List<QuizResponseDto> retrieveAllQuizs();
+
+    int updateCreateDateFromNow(LocalDateTime now);
 }
