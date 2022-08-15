@@ -114,4 +114,10 @@ public class QuizServiceImpl implements QuizService {
 
         return quizRepository.bulkCreateDatePlus(now);
     }
+
+    @Override
+    @Transactional
+    public void deleteAll() {
+        quizRepository.deleteAll();
+    }
 }

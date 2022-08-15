@@ -101,4 +101,18 @@ public class QuizController {
         return ResponseEntity.ok(quizResponseDto);
     }
 
+
+    /**
+     * 퀴즈 전체 삭제
+     */
+    @DeleteMapping(value = "/quizs" , produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value="퀴즈 전체 삭제하는 api" , notes = "해당 api로 요청시 퀴즈 전체를 삭제합니다.")
+    public ResponseEntity<GeneralResponse> deleteAllQuiz() {
+        quizService.deleteAll();
+
+        return new ResponseEntity<>(GeneralResponse.of(200L, HttpStatus.OK , "퀴즈 전체를 성공적으로 삭제했습니다."), HttpStatus.OK);
+    }
+
+
+
 }
