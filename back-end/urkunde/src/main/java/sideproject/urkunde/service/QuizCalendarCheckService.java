@@ -1,12 +1,14 @@
 package sideproject.urkunde.service;
 
 import sideproject.urkunde.dto.request.QuizCalendarCheck;
+import sideproject.urkunde.dto.response.WeekCheckResponse;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Map;
 
 public interface QuizCalendarCheckService {
 
 
-    Map<LocalDate, String> findCycleIdBetweenDates(QuizCalendarCheck quizCalendarCheck);
+    WeekCheckResponse findCycleIdBetweenDates(QuizCalendarCheck quizCalendarCheck);
 }

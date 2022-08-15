@@ -11,6 +11,7 @@ import sideproject.urkunde.dto.response.WeekCheckResponse;
 import sideproject.urkunde.service.QuizCalendarCheckService;
 
 import javax.validation.Valid;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -29,8 +30,9 @@ public class QuizCalendarCheckController {
     @ApiResponse(code = 200, message = "퀴즈 주간 확인 성공" ,
             examples = @Example(value = @ExampleProperty(mediaType = APPLICATION_JSON_VALUE,
                     value = "{'2022-08-14' : 'ture' , '2022-08-15' : 'false' , '2022-08-16' : 'none'}")))
-    public ResponseEntity<Map<LocalDate, String>> checkWeek(@RequestBody @Valid QuizCalendarCheck quizCalendarCheck) {
-        Map<LocalDate, String> weekChecks = quizCalendarCheckService.findCycleIdBetweenDates(quizCalendarCheck);
+    public ResponseEntity<WeekCheckResponse> checkWeek(@RequestBody @Valid QuizCalendarCheck quizCalendarCheck) {
+
+        WeekCheckResponse weekChecks = quizCalendarCheckService.findCycleIdBetweenDates(quizCalendarCheck);
 
         return ResponseEntity.ok(weekChecks);
     }
