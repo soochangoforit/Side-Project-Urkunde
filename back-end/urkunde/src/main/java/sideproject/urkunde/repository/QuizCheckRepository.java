@@ -17,5 +17,11 @@ public interface QuizCheckRepository extends JpaRepository<QuizCheck, Long> {
 
     // fetch join with quiz
     @Query("select qc from QuizCheck qc join fetch qc.quiz q  where qc.quizCycle.id in :quizCycleIds and qc.quizState = 'CORRECT'")
-    List<QuizCheck> findByQuizCycleIdIn(@Param("quizCycleIds") List<Long> quizCycleIds);
+    List<QuizCheck> findCorrectByQuizCycleIdIn(@Param("quizCycleIds") List<Long> quizCycleIds);
+
+    @Query("select qc from QuizCheck qc join fetch qc.quiz q  where qc.quizCycle.id in :quizCycleIds and qc.quizState = 'INCORRECT'")
+    List<QuizCheck> findInCorrectByQuizCycleIdIn(@Param("quizCycleIds") List<Long> quizCycleIds);
+
+    @Query("select qc from QuizCheck qc join fetch qc.quiz q  where qc.quizCycle.id = :quizCycleId and qc.quizState = 'CORRECT'")
+    List<QuizCheck> findByQuizCycleIdWithCorrect(@Param("quizCycleId") Long quizCycleId);
 }

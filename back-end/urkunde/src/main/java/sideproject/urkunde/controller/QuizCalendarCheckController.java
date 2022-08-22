@@ -32,7 +32,9 @@ public class QuizCalendarCheckController {
                     value = "{'sunday' : 'ture' , 'monday' : 'false' , 'tuesday' : 'none'}")))
     public ResponseEntity<WeekCheckResponse> checkWeek(@RequestBody @Valid QuizCalendarCheck quizCalendarCheck) {
 
-        WeekCheckResponse weekChecks = quizCalendarCheckService.findCycleIdBetweenDates(quizCalendarCheck);
+       // WeekCheckResponse weekChecks = quizCalendarCheckService.findCycleIdBetweenDates(quizCalendarCheck);
+
+        WeekCheckResponse weekChecks = quizCalendarCheckService.findStatusBetweenDates(quizCalendarCheck);
 
         return ResponseEntity.ok(weekChecks);
     }

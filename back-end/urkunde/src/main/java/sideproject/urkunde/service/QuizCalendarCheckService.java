@@ -11,4 +11,6 @@ public interface QuizCalendarCheckService {
 
 
     WeekCheckResponse findCycleIdBetweenDates(QuizCalendarCheck quizCalendarCheck);
+
+    WeekCheckResponse findStatusBetweenDates(QuizCalendarCheck quizCalendarCheck);
 }
