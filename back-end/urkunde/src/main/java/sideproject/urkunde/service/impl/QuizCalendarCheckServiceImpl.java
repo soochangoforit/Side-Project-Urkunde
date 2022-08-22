@@ -3,6 +3,7 @@ package sideproject.urkunde.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import sideproject.urkunde.domain.DayCheck;
 import sideproject.urkunde.domain.Quiz;
 import sideproject.urkunde.domain.QuizCheck;
 import sideproject.urkunde.domain.QuizCycle;
@@ -11,6 +12,7 @@ import sideproject.urkunde.dto.response.WeekCheckResponse;
 import sideproject.urkunde.repository.QuizCheckRepository;
 import sideproject.urkunde.repository.QuizCycleRepository;
 import sideproject.urkunde.repository.QuizRepository;
+import sideproject.urkunde.service.DayCheckService;
 import sideproject.urkunde.service.QuizCalendarCheckService;
 
 import java.time.DayOfWeek;
@@ -27,7 +29,7 @@ public class QuizCalendarCheckServiceImpl implements QuizCalendarCheckService {
     private final QuizCycleRepository quizCycleRepository;
     private final QuizRepository quizRepository;
     private final QuizCheckRepository quizCheckRepository;
-
+    private final DayCheckService dayCheckService;
 
 
     @Override
@@ -63,7 +65,7 @@ public class QuizCalendarCheckServiceImpl implements QuizCalendarCheckService {
             LinkedList<Long> correctAboutQuizIds = new LinkedList<>();
 
             // 해당 요일의 모든 사이클을 통해서 check된 모든 quiz check를 가져온다.
-            List<QuizCheck> quizIdsForSuccess = quizCheckRepository.findByQuizCycleIdIn(quizCycleIds); // todo : quizCheck와 quiz Join을 통해서 가져오는데 인자로은 cycle id를 가져오도록 하자.
+            List<QuizCheck> quizIdsForSuccess = quizCheckRepository.findCorrectByQuizCycleIdIn(quizCycleIds); // todo : quizCheck와 quiz Join을 통해서 가져오는데 인자로은 cycle id를 가져오도록 하자.
 
             int quizIdsForSuccessCount = quizIdsForSuccess.stream().map(QuizCheck::getQuiz).map(Quiz::getId).collect(Collectors.toSet()).size();
 
@@ -73,9 +75,9 @@ public class QuizCalendarCheckServiceImpl implements QuizCalendarCheckService {
             // 그날에 시도한 사이클 흔적은 있지만 문제를 다 제거해서 없어진 경우는 none
             if (quizIdsForSuccessCount == idsMadeOfDay && quizIdsForSuccessCount != 0) {
                 datesForCheck.put(localDate.getDayOfWeek(), "true");
-            } else if(quizIdsForSuccessCount < idsMadeOfDay && quizIdsForSuccessCount != 0){ // 해당 요일 기준으로 만든 문제의 개수를 다 풀지 않을 경우 (모두 정답이 아닌 경우)
+            } else if (quizIdsForSuccessCount < idsMadeOfDay && quizIdsForSuccessCount != 0) { // 해당 요일 기준으로 만든 문제의 개수를 다 풀지 않을 경우 (모두 정답이 아닌 경우)
                 datesForCheck.put(localDate.getDayOfWeek(), "false");
-            }else{ // none을 또 넣어주는 이유는 해당 날짜에 시도한 흔적은 있으나, 문제를 다 제거해서 없어진 경우
+            } else { // none을 또 넣어주는 이유는 해당 날짜에 시도한 흔적은 있으나, 문제를 다 제거해서 없어진 경우
                 datesForCheck.put(localDate.getDayOfWeek(), "none");
             }
 
@@ -92,6 +94,34 @@ public class QuizCalendarCheckServiceImpl implements QuizCalendarCheckService {
 
         return new WeekCheckResponse(datesForCheck);
     }
+
+    @Override
+    public WeekCheckResponse findStatusBetweenDates(QuizCalendarCheck quizCalendarCheck) {
+
+        Map<DayOfWeek, String> datesForCheck = new LinkedHashMap<>();
+
+        List<LocalDate> localDates = quizCalendarCheck.datesBetweenStartDateToRecentDate();
+
+        for (LocalDate localDate : localDates) {
+
+            Optional<DayCheck> statusOfDay = dayCheckService.findStatusOfDay(localDate);
+
+            // 해당 날짜 안에 문제를 다 틀리더라도 사이클을 돌았으면 흔적이 남아있다.
+            if (statusOfDay.isPresent()) {
+                datesForCheck.put(localDate.getDayOfWeek(), statusOfDay.get().getDayState());
+            }
+            // 해당 요일에 사이클 조차 시작하지 않은 경우는 none이다.
+            else {
+                datesForCheck.put(localDate.getDayOfWeek(), "none");
+            }
+        }
+
+        return new WeekCheckResponse(datesForCheck);
+
+    }
+
+
+
 
 
 
