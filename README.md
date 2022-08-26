@@ -23,7 +23,7 @@
 
 - **퀴즈 CRUD**
     
-    <div align=center>
+<div align=center>
 
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/91618389/186843381-8270cf6e-6e9f-4f6b-b992-6428985101c6.png">
 
