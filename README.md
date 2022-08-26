@@ -23,18 +23,30 @@
 
 - **퀴즈 CRUD**
     
-    ![q](https://user-images.githubusercontent.com/91618389/186843381-8270cf6e-6e9f-4f6b-b992-6428985101c6.png)
+    <div align=center>
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/91618389/186843381-8270cf6e-6e9f-4f6b-b992-6428985101c6.png">
+
+</div>
+  
     
 
 - **퀴즈 점검**
     
-    ![qq](https://user-images.githubusercontent.com/91618389/186843378-df9b977b-60e0-41da-bc33-053efebd4870.png)
+<div align=center>
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/91618389/186843378-df9b977b-60e0-41da-bc33-053efebd4870.png">
+
+</div>
     
 
 - **퀴즈 푼 상태 기록**
     
-    ![qqqUntitled](https://user-images.githubusercontent.com/91618389/186843369-4d663bc5-2982-4a30-9fee-d47d422003f0.png)
-    
+<div align=center>
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/91618389/186843369-4d663bc5-2982-4a30-9fee-d47d422003f0.png">
+
+</div>
     
 
 **<기능>**
