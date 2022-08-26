@@ -14,11 +14,9 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor @Setter @Getter
 public class QuizRequestDto {
 
-    @NotEmpty(message = "문제를 입력해주세요.")
     @ApiModelProperty(value = "퀴즈 질문", example = "오늘은 무슨 요일이죠?", required = true)
     private String content;
 
-    @NotEmpty(message = "정답을 입력해주세요.")
     @ApiModelProperty(value = "퀴즈 정답", example = "월요일" , required = true)
     private String answer;
 }

@@ -20,18 +20,6 @@ import java.util.Date;
 @RestControllerAdvice
 public class CustomizedResponseEntityExceptionHandler  {
 
-    /**
-     * controller에서 일반 Exception이 발생하면 실행되는 method
-     */
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request){
-
-        // 우리가 만들었던 error 형식, 일반 error 문에서는 백엔드 코드가 노출될 위험이 있기 때문에 필요한 에러 데이터만 반환하고자 한다.
-        ExceptionResponse exceptionResponse =
-                new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false)); // 부가적은 실명을 하지 않는다고 해서 false
-
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR); // 500번 error
-    }
 
 
     /**

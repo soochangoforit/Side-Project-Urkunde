@@ -16,11 +16,9 @@ public class Quiz extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     @Column(nullable = false)
     private String content;
 
-    @NotEmpty
     @Column(nullable = false)
     private String answer;
 
@@ -39,8 +37,8 @@ public class Quiz extends BaseTimeEntity {
     }
 
     public Quiz toUpdateQuizEntity(QuizRequestDto quizUpdateDto) {
-        this.content = quizUpdateDto.getContent();
-        this.answer = quizUpdateDto.getAnswer();
+        this.content = quizUpdateDto.getContent().isEmpty() ? this.content : quizUpdateDto.getContent();
+        this.answer = quizUpdateDto.getAnswer().isEmpty() ? this.answer : quizUpdateDto.getAnswer();
 
         return this;
     }

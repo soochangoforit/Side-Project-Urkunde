@@ -43,7 +43,7 @@ public class QuizServiceImpl implements QuizService {
     @Transactional
     public Quiz updateQuiz(Long id, QuizRequestDto dto) {
 
-        if(dto.getAnswer().isEmpty() || dto.getContent().isEmpty()){
+        if(dto.getAnswer().isEmpty() && dto.getContent().isEmpty()){
             throw new IllegalArgumentException("Answer and Content are required");
         }
 
