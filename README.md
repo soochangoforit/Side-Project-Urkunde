@@ -23,17 +23,18 @@
 
 - **퀴즈 CRUD**
     
-    ![Untitled](ReadMe%20md%203b8c6d2a538945c6a46cbd0a808486c4/Untitled.png)
+    ![q](https://user-images.githubusercontent.com/91618389/186843381-8270cf6e-6e9f-4f6b-b992-6428985101c6.png)
     
 
 - **퀴즈 점검**
     
-    ![Untitled](ReadMe%20md%203b8c6d2a538945c6a46cbd0a808486c4/Untitled%201.png)
+    ![qq](https://user-images.githubusercontent.com/91618389/186843378-df9b977b-60e0-41da-bc33-053efebd4870.png)
     
 
 - **퀴즈 푼 상태 기록**
     
-    ![Untitled](ReadMe%20md%203b8c6d2a538945c6a46cbd0a808486c4/Untitled%202.png)
+    ![qqqUntitled](https://user-images.githubusercontent.com/91618389/186843369-4d663bc5-2982-4a30-9fee-d47d422003f0.png)
+    
     
 
 **<기능>**
@@ -45,6 +46,7 @@
     - 다 맞추지도 못한 경우 : **False (주황색)**
     - 아무런 문제도 풀지 않은 경우 : **None (없음)**
 
+
 **<사용 기술>**
 
 - Spring Boot
@@ -52,9 +54,10 @@
 - MariaDB
 - Oracle Server
 
+
 ## Requirements
 
----
+
 
 - JDK 11 or later
 - Gradle 4+
@@ -64,7 +67,7 @@
 
 ## ****Installation****
 
----
+
 
 - Install as you would normally install a Java JDK 11
 - If you use IntelliJ, you must install lombok plugin
@@ -74,7 +77,7 @@
 
 ## Contributing
 
----
+
 
 1. Create issues about the work.
 2. Create a branch on the issue.
@@ -110,7 +113,7 @@ Referred to [Beom Dev Log](https://beomseok95.tistory.com/328) and [Conventio
 
 ## Maintainer
 
----
+
 
 Current maintainers:
 
